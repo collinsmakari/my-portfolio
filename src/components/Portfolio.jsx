@@ -17,11 +17,44 @@ import portfolio from "../assets/portfolio.jpg";
 import clock1 from "../assets/clock1.jpg";
 import clock2 from "../assets/clock2.jpg";
 import aboutVideo from "../assets/Drones.mp4";
+import emailjs from "emailjs-com";
+import { useRef } from "react";
 
 export default function Portfolio() {
   const [menuOpen, setMenuOpen] = useState(false);
-
+  const formRef = useRef();
   const toggleMenu = () => setMenuOpen(!menuOpen);
+
+  // Add at the top with your other useState
+  const [successMessage, setSuccessMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+
+  function sendEmail(e) {
+    e.preventDefault();
+    setSuccessMessage("");
+    setErrorMessage("");
+
+    emailjs
+      .sendForm(
+        "service_a1pt55e",
+        "template_o0zcljd",
+        formRef.current, // ✅ use the ref
+        "QJCRvQqhAWygNd-92"
+      )
+      .then((result) => {
+        setSuccessMessage("Your message has been sent successfully!");
+        console.log(result.text);
+        e.target.reset();
+
+        setTimeout(() => setSuccessMessage(""), 3000);
+      })
+      .catch((error) => {
+        console.log(error.text);
+        setErrorMessage("Failed to send message. Please try again.");
+
+        setTimeout(() => setErrorMessage(""), 3000);
+      });
+  }
 
   const skills = [
     { name: "HTML", icon: <FaHtml5 className="text-orange-500 text-4xl" /> },
@@ -36,13 +69,13 @@ export default function Portfolio() {
     {
       title: "E-Commerce App",
       desc: "A modern online shopping experience with cart popup and product grid.",
-      git: "#",
+      git: "https://e-commerce-app-sbou.vercel.app/",
       img: ecommerce1,
     },
     {
       title: "Portfolio Website",
       desc: "A sleek personal portfolio made with React and Tailwind CSS.",
-      git: "#",
+      git: "https://my-portfolio-lime-six-16.vercel.app/",
       img: portfolio,
     },
     {
@@ -223,6 +256,8 @@ export default function Portfolio() {
               <p className="text-gray-400 mb-4">{p.desc}</p>
               <a
                 href={p.git}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="flex items-center gap-2 text-cyan-400 hover:text-cyan-300"
               >
                 <FaGithub /> View on GitHub
@@ -273,60 +308,83 @@ export default function Portfolio() {
                   href="mailto:youremail@example.com"
                   className="hover:text-cyan-400"
                 >
-                  youremail@example.com
+                  collinsmakari6@gmail.com
                 </a>
               </div>
               <div className="flex items-center gap-2">
                 <span className="font-semibold">Phone:</span>
                 <a href="tel:+1234567890" className="hover:text-cyan-400">
-                  +1 234 567 890
+                  +254 707 947 561
                 </a>
               </div>
             </div>
           </div>
 
           {/* RIGHT COLUMN: Contact Form */}
-          <form className="bg-gray-800 p-8 rounded-lg shadow-lg w-full">
+          <form
+            ref={formRef}
+            onSubmit={sendEmail}
+            className="bg-gray-800 p-8 rounded-lg shadow-lg w-full"
+          >
             {/* NAME FIELD */}
             <div className="mb-4">
               <label className="block text-gray-300 mb-2 font-semibold">
                 Full Name
               </label>
               <input
+                name="name"
                 type="text"
                 placeholder="Enter your name"
-                className="w-full p-3 rounded-md bg-gray-700 border border-gray-600 text-white focus:outline-none focus:ring-2 focus:ring-cyan-500"
+                className="w-full p-3 rounded-md bg-gray-700 border border-gray-600 text-white 
+      focus:outline-none focus:ring-2 focus:ring-cyan-500"
+                required
               />
             </div>
-
             {/* EMAIL FIELD */}
             <div className="mb-4">
               <label className="block text-gray-300 mb-2 font-semibold">
                 Email Address
               </label>
               <input
+                name="email"
                 type="email"
                 placeholder="Enter your email"
-                className="w-full p-3 rounded-md bg-gray-700 border border-gray-600 text-white focus:outline-none focus:ring-2 focus:ring-cyan-500"
+                className="w-full p-3 rounded-md bg-gray-700 border border-gray-600 text-white 
+      focus:outline-none focus:ring-2 focus:ring-cyan-500"
+                required
               />
             </div>
-
             {/* MESSAGE FIELD */}
             <div className="mb-4">
               <label className="block text-gray-300 mb-2 font-semibold">
                 Message
               </label>
               <textarea
+                name="message"
                 rows="5"
                 placeholder="Write your message..."
-                className="w-full p-3 rounded-md bg-gray-700 border border-gray-600 text-white focus:outline-none focus:ring-2 focus:ring-cyan-500"
+                className="w-full p-3 rounded-md bg-gray-700 border border-gray-600 text-white 
+      focus:outline-none focus:ring-2 focus:ring-cyan-500"
+                required
               ></textarea>
             </div>
-
+            {/* SUCCESS MESSAGE */}
+            {successMessage && (
+              <p className="mb-4 text-green-400 bg-green-900/20 p-3 rounded-md text-center">
+                {successMessage}
+              </p>
+            )}
+            {/* ERROR MESSAGE */}
+            {errorMessage && (
+              <p className="mb-4 text-red-400 bg-red-900/20 p-3 rounded-md text-center">
+                {errorMessage}
+              </p>
+            )}
             {/* SUBMIT BUTTON */}
             <button
               type="submit"
-              className="w-full bg-cyan-500 hover:bg-cyan-400 text-black font-bold py-3 rounded-md transition-colors duration-300"
+              className="w-full bg-cyan-500 hover:bg-cyan-400 text-black font-bold py-3 rounded-md 
+    transition-colors duration-300"
             >
               Send Message
             </button>
