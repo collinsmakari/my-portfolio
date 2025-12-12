@@ -15,7 +15,7 @@ import { FiMenu, FiX } from "react-icons/fi";
 import ecommerce1 from "../assets/ecommerce1.jpg";
 import portfolio from "../assets/portfolio.jpg";
 import clock1 from "../assets/clock1.jpg";
-import clock2 from "../assets/clock2.jpg";
+import portfolio1 from "../assets/portfolio1.jpg";
 import aboutVideo from "../assets/Drones.mp4";
 import emailjs from "emailjs-com";
 import { useRef } from "react";
@@ -118,9 +118,27 @@ export default function Portfolio() {
 
           {/* Social Icons Desktop */}
           <div className="hidden md:flex gap-4 text-xl">
-            <FaGithub className="hover:text-cyan-400 cursor-pointer" />
-            <FaLinkedin className="hover:text-cyan-400 cursor-pointer" />
-            <FaTwitter className="hover:text-cyan-400 cursor-pointer" />
+            <FaGithub
+              onClick={() =>
+                window.open("https://github.com/CollinsMakari", "_blank")
+              }
+              className="hover:text-cyan-400 cursor-pointer"
+            />
+            <FaLinkedin
+              onClick={() =>
+                window.open(
+                  "https://www.linkedin.com/in/g-e-collins-makari-450b4a232/",
+                  "_blank"
+                )
+              }
+              className="hover:text-cyan-400 cursor-pointer"
+            />
+            <FaTwitter
+              onClick={() =>
+                window.open("https://x.com/Makaricollins", "_blank")
+              }
+              className="hover:text-cyan-400 cursor-pointer"
+            />
           </div>
 
           {/* Hamburger */}
@@ -170,9 +188,27 @@ export default function Portfolio() {
 
             {/* SOCIAL ICONS MOBILE */}
             <div className="flex gap-4 text-2xl pt-4 border-t border-gray-600">
-              <FaGithub className="hover:text-cyan-400 cursor-pointer" />
-              <FaLinkedin className="hover:text-cyan-400 cursor-pointer" />
-              <FaTwitter className="hover:text-cyan-400 cursor-pointer" />
+              <FaGithub
+                onClick={() =>
+                  window.open("https://github.com/CollinsMakari", "_blank")
+                }
+                className="hover:text-cyan-400 cursor-pointer"
+              />
+              <FaLinkedin
+                onClick={() =>
+                  window.open(
+                    "https://www.linkedin.com/in/g-e-collins-makari-450b4a232/",
+                    "_blank"
+                  )
+                }
+                className="hover:text-cyan-400 cursor-pointer"
+              />
+              <FaTwitter
+                onClick={() =>
+                  window.open("https://x.com/Makaricollins", "_blank")
+                }
+                className="hover:text-cyan-400 cursor-pointer"
+              />
             </div>
           </div>
         )}
@@ -190,16 +226,17 @@ export default function Portfolio() {
               Frontend Junior Developer crafting beautiful and responsive web
               experiences.
             </p>
-
-            <button className="px-6 py-3 bg-cyan-500 rounded-lg font-semibold hover:bg-cyan-400">
-              View My Work
-            </button>
+            <a rel="stylesheet" href="#projects">
+              <button className="px-6 py-3 bg-cyan-500 rounded-lg font-semibold hover:bg-cyan-400">
+                View My Work
+              </button>
+            </a>
           </div>
 
           <img
-            src={clock2}
+            src={portfolio1}
             alt="Profile"
-            className=" w-72 h-72  rounded-xl shadow-lg border border-gray-700 object-cover"
+            className=" w-80 h-85  rounded-xl shadow-lg border border-gray-700 object-cover"
           />
         </div>
       </section>
