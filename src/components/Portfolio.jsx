@@ -89,7 +89,7 @@ export default function Portfolio() {
   const year = new Date().getFullYear();
 
   return (
-    <div className="font-sans bg-gray-900 text-white">
+    <div className="font-sans bg-black text-white">
       {/* HEADER */}
       <header className="fixed w-full top-0 left-0 bg-gray-950 shadow-lg z-50">
         <div className="max-w-6xl mx-auto p-4 flex justify-between items-center">
@@ -217,7 +217,7 @@ export default function Portfolio() {
       {/* HERO SECTION */}
       <section
         id="home"
-        className="w-full min-h-[calc(100vh-70px)] pt-[70px] max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-center gap-10 p-4"
+        className="w-full min-h-[calc(100vh-70px)] pt-[70px] max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-center gap-10 p-4 bg-gray-950 mb-5 rounded-xl"
       >
         <div className="max-w-6xl w-full flex flex-col  items-center md:flex-row md:items-center gap-10">
           <div className="text-center md:text-left">
@@ -244,7 +244,7 @@ export default function Portfolio() {
       {/* ABOUT SECTION */}
       <section
         id="about"
-        className="relative scroll-mt-[80px] h-screen flex items-center justify-center text-center overflow-hidden"
+        className="relative scroll-mt-[80px] h-screen flex items-center justify-center text-center overflow-hidden mb-5 "
       >
         {/* VIDEO BACKGROUND */}
         <video
@@ -274,7 +274,7 @@ export default function Portfolio() {
       {/* PROJECTS SECTION */}
       <section
         id="projects"
-        className="scroll-mt-[80px] py-10 max-w-6xl mx-auto p-4"
+        className="scroll-mt-[80px] py-10 max-w-6xl mx-auto p-4 bg-gray-950 mb-5 rounded-xl"
       >
         <h2 className="text-4xl font-bold text-center mb-10">Projects</h2>
 
@@ -307,7 +307,7 @@ export default function Portfolio() {
       {/* SKILLS SECTION */}
       <section
         id="skills"
-        className="scroll-mt-[80px] py-10 max-w-6xl mx-auto p-4"
+        className="scroll-mt-[80px] py-10 max-w-6xl mx-auto p-4 bg-gray-950 mb-5 rounded-xl"
       >
         <h2 className="text-4xl font-bold text-center mb-10">Skills & Tools</h2>
 
@@ -327,7 +327,7 @@ export default function Portfolio() {
       {/* CONTACT */}
       <section
         id="contact"
-        className="scroll-mt-[40px] min-h-screen max-w-6xl mx-auto p-4 flex items-center justify-center"
+        className="scroll-mt-[40px] min-h-screen max-w-6xl mx-auto p-4 flex items-center justify-center bg-gray-950 mb-5 rounded-xl"
       >
         <div className="py-10 grid grid-cols-1 lg:grid-cols-2 gap-10 ">
           {/* LEFT COLUMN: Title + Description + Email & Phone */}
@@ -430,8 +430,12 @@ export default function Portfolio() {
       </section>
 
       {/* FOOTER INSIDE FULL HEIGHT BLOCK */}
-      <footer className="bg-black py-6 text-center text-gray-400 rounded-md mt-10">
-        © {year} Collins Makari. All rights reserved.
+      <footer className=" text-center text-gray-400 ">
+        {/* Border only */}
+        <div className="mx-auto max-w-6xl border-t border-gray-700 mb-6"></div>
+
+        {/* Text unaffected */}
+        <p>© {year} Collins Makari. All rights reserved.</p>
       </footer>
     </div>
   );
