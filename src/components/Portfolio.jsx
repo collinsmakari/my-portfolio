@@ -19,8 +19,10 @@ import portfolio1 from "../assets/portfolio1.jpg";
 import aboutVideo from "../assets/Drones.mp4";
 import emailjs from "emailjs-com";
 import { useRef } from "react";
+import { useAuth } from "../context/AuthContext";
 
 export default function Portfolio() {
+  const { isAuthenticated, logout } = useAuth();
   const [menuOpen, setMenuOpen] = useState(false);
   const formRef = useRef();
   const toggleMenu = () => setMenuOpen(!menuOpen);
@@ -139,6 +141,15 @@ export default function Portfolio() {
               }
               className="hover:text-cyan-400 cursor-pointer"
             />
+            {/* LOGOUT BUTTON */}
+            {isAuthenticated && (
+              <button
+                onClick={logout}
+                className="ml-4 text-sm bg-red-500 px-3 py-1 rounded"
+              >
+                Logout
+              </button>
+            )}
           </div>
 
           {/* Hamburger */}
@@ -209,6 +220,18 @@ export default function Portfolio() {
                 }
                 className="hover:text-cyan-400 cursor-pointer"
               />
+              {/* LOGOUT (Mobile) */}
+              {isAuthenticated && (
+                <button
+                  onClick={() => {
+                    logout();
+                    toggleMenu();
+                  }}
+                  className="mt-4 bg-red-500 px-4 py-2 rounded font-semibold"
+                >
+                  Logout
+                </button>
+              )}
             </div>
           </div>
         )}
@@ -240,6 +263,21 @@ export default function Portfolio() {
           />
         </div>
       </section>
+
+      {/* ADMIN PANEL (Only visible when logged in) */}
+      {isAuthenticated && (
+        <section className="max-w-6xl mx-auto p-4 bg-gray-900 rounded-xl mb-5">
+          <h2 className="text-2xl font-bold mb-4">Admin Panel</h2>
+          <p>You can manage projects here.</p>
+
+          <button
+            onClick={logout}
+            className="mt-4 bg-red-500 px-4 py-2 rounded font-semibold"
+          >
+            Logout
+          </button>
+        </section>
+      )}
 
       {/* ABOUT SECTION */}
       <section
@@ -369,7 +407,7 @@ export default function Portfolio() {
                 Full Name
               </label>
               <input
-                name="name"
+                name=" name"
                 type="text"
                 placeholder="Enter your name"
                 className="w-full p-3 rounded-md bg-gray-700 border border-gray-600 text-white 
@@ -383,7 +421,7 @@ export default function Portfolio() {
                 Email Address
               </label>
               <input
-                name="email"
+                name=" email"
                 type="email"
                 placeholder="Enter your email"
                 className="w-full p-3 rounded-md bg-gray-700 border border-gray-600 text-white 
@@ -397,7 +435,7 @@ export default function Portfolio() {
                 Message
               </label>
               <textarea
-                name="message"
+                name=" message"
                 rows="5"
                 placeholder="Write your message..."
                 className="w-full p-3 rounded-md bg-gray-700 border border-gray-600 text-white 
